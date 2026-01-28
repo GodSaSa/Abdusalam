@@ -4,9 +4,9 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.9'
     - name: Install dependencies
@@ -14,9 +14,9 @@ jobs:
         pip install pyinstaller pywin32
     - name: Build EXE
       run: |
-        pyinstaller --onefile --console --name "Emannur的重命名助手" rename.py
+        pyinstaller --onefile --console --name "Emannur 的重命名工具" rename.py
     - name: Upload EXE
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: my-exe-file
-        path: dist/Emannur的重命名助手.exe
+        path: dist/Emannur 的重命名工具.exe
