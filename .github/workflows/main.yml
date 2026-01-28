@@ -1,0 +1,22 @@
+name: Build EXE for Windows
+on: [push]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    - name: Install dependencies
+      run: |
+        pip install pyinstaller pywin32
+    - name: Build EXE
+      run: |
+        pyinstaller --onefile --console --name "Emannur的重命名助手" rename.py
+    - name: Upload EXE
+      uses: actions/upload-artifact@v3
+      with:
+        name: my-exe-file
+        path: dist/Emannur的重命名助手.exe
